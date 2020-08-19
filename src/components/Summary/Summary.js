@@ -26,9 +26,8 @@ class Summary extends React.Component {
     );
   }
 
-  _renderCountryList = () => {
+  _renderSummaryList = () => {
     const { Countries } = this.state.data;
-    console.log(Countries);
     if (this.state.isLoaded) {
       return Countries.map((item) => {
         return {
@@ -46,7 +45,7 @@ class Summary extends React.Component {
   };
 
   render() {
-    const dataSource = this._renderCountryList();
+    const dataSource = this._renderSummaryList();
     const columns = [
       {
         title: "Country",
