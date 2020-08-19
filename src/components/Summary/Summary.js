@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Table } from "antd";
+import "./Summary.css";
 
 class Summary extends React.Component {
   constructor(props) {
