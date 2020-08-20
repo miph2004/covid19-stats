@@ -4,6 +4,7 @@ import VietnamStats from "./components/VietnamStats/VietnamStats";
 import QuickFacts from './components/QuickFacts/QuickFacts'
 import VietnamQuickFacts from './components/VietnamQuickFacts/VietnamQuickFacts'
 import TabBars from './components/TabBars/TabBars'
+import Header from "./containers/Header/Header";
 class App extends React.Component {
   render() {
     return (
@@ -13,6 +14,7 @@ class App extends React.Component {
         <VietnamQuickFacts/>
         <Summary />
         <VietnamStats />
+        <Header />
       </React.Fragment>
     );
   }
