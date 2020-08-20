@@ -185,6 +185,16 @@ class Summary extends React.Component {
         sorter: (a, b) => a.totalRecovered - b.totalRecovered,
       },
       {
+        title: "Tỷ lệ hồi phục",
+        dataIndex: "percentageRecovered",
+        key: "percentageRecovered",
+      },
+      {
+        title: "Tỷ lệ tử vong",
+        dataIndex: "percentageRecovered",
+        key: "percentageRecovered",
+      },
+      {
         title: "Thời điểm",
         dataIndex: "date",
         key: "date",
