@@ -52,8 +52,8 @@ class Summary extends React.Component {
           totalConfirmed: item.TotalConfirmed,
           totalDeaths: item.TotalDeaths,
           totalRecovered: item.TotalRecovered,
-          percentageRecovered: percentageRecovered + '%' +`(${newPercentageRecovered}%)`,
-          percentageDeaths: percentageDeaths + '%' +`up(${newPercentageDeaths}%)`,
+          percentageRecovered: percentageRecovered + '% ' +`(↑${newPercentageRecovered}%)`,
+          percentageDeaths: percentageDeaths + '% ' +`(↑${newPercentageDeaths}%)`,
           date: item.Date,
         };
       });
