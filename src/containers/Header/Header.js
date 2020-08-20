@@ -1,5 +1,6 @@
 import React from "react";
 import DashBoard from "../DashBoard/Dashboard";
+import Map from "../Map/Map";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./Header.css";
 
@@ -22,6 +23,9 @@ class Header extends React.Component {
             </ul>
           </nav>
           <Switch>
+            <Route path="/map">
+              <Map />
+            </Route>
             <Route path="/">
               <DashBoard />
             </Route>
