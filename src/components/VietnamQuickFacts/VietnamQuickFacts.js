@@ -5,10 +5,7 @@ class VietnamQuickFacts extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      totalCases: 0,
-      totalDeaths: 0,
-      recovered: 0,
-      lastUpdated: "",
+      data: [],
       isLoaded: false,
     };
   }
@@ -19,17 +16,8 @@ class VietnamQuickFacts extends React.Component {
       )
       .then(
         (response) => {
-          const {
-            infected,
-            deceased,
-            recovered,
-            lastUpdatedAtSource,
-          } = response.data;
           this.setState({
-            totalCases: infected,
-            totalDeaths: deceased,
-            recovered: recovered,
-            lastUpdated: lastUpdatedAtSource,
+            data: response.data,
             isLoaded: true,
           });
         },
@@ -39,17 +27,16 @@ class VietnamQuickFacts extends React.Component {
       );
   }
   mainContent() {
-    const { isLoaded, totalCases, totalDeaths, recovered } = this.state;
-    const totalCasesFm = new Intl.NumberFormat().format(totalCases);
-    const totalDeathsFm = new Intl.NumberFormat().format(totalDeaths);
-    const recoveredFm = new Intl.NumberFormat().format(recovered);
+    const { isLoaded } = this.state;
+    const { treated, recovered, deceased } = this.state.data;
+    const total = treated + recovered + deceased;
     if (isLoaded) {
       return (
         <Row>
           <Col md={8}>
             <Statistic
               title="TỔNG CA NHIỄM"
-              value={totalCasesFm}
+              value={total}
               valueStyle={{
                 color: "#77778B",
                 fontSize: 30,
@@ -61,7 +48,7 @@ class VietnamQuickFacts extends React.Component {
           <Col md={8}>
             <Statistic
               title="TỬ VONG"
-              value={totalDeathsFm}
+              value={deceased}
               valueStyle={{
                 color: "#F63A4B",
                 fontSize: 30,
@@ -73,7 +60,7 @@ class VietnamQuickFacts extends React.Component {
           <Col md={8}>
             <Statistic
               title="HỒI PHỤC"
-              value={recoveredFm}
+              value={recovered}
               valueStyle={{
                 color: "#699a21",
                 fontSize: 30,
@@ -89,8 +76,6 @@ class VietnamQuickFacts extends React.Component {
     }
   }
   render() {
-    var { contentRoutes, lastUpdated } = this.state;
-    lastUpdated = new Date();
     return (
       <Card
         bordered={false}
