@@ -103,7 +103,7 @@ class QuickFasts extends React.Component {
         </Row>
       );
     } else {
-      return <Spin spinning={isLoaded} />;
+      return <Spin spinning={isLoaded.toString()} />;
     }
   }
   render() {
@@ -128,6 +128,9 @@ class QuickFasts extends React.Component {
             return <Tabs.TabPane key={index} tab={route.name} />;
           })}
         </Tabs>
+        <div className="title">
+          <p>GLOBAL</p>
+        </div>
         <Card
           className="grid-content"
           style={{ textAlign: "center", margin: 20 }}
