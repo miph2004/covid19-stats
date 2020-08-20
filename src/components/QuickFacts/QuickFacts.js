@@ -42,7 +42,7 @@ class QuickFasts extends React.Component {
         <Row>
           <Col md={8}>
             <Statistic
-              title="Totalvirus Cases"
+              title="TỔNG CA NHIỄM"
               value={totalCases}
               valueStyle={{
                 color: "#77778B",
@@ -57,7 +57,7 @@ class QuickFasts extends React.Component {
           </Col>
           <Col md={8}>
             <Statistic
-              title="Deaths"
+              title="TỬ VONG"
               value={totalDeaths}
               valueStyle={{
                 color: "#F63A4B",
@@ -69,7 +69,7 @@ class QuickFasts extends React.Component {
           </Col>
           <Col md={8}>
             <Statistic
-              title="Total Recovered"
+              title="HỒI PHỤC"
               value={recovered}
               valueStyle={{
                 color: "#699a21",

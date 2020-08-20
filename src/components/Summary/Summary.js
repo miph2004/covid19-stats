@@ -48,47 +48,57 @@ class Summary extends React.Component {
     const dataSource = this._renderSummaryList();
     const columns = [
       {
-        title: "Country",
+        title: "Tên quốc gia",
         dataIndex: "country",
         key: "country",
       },
       {
-        title: "New Confirmed",
+        title: "Số ca nhiễm mới",
         dataIndex: "newConfirmed",
         key: "newConfirmed",
       },
       {
-        title: "New Deaths",
+        title: "Số ca tử vong mới",
         dataIndex: "newDeaths",
         key: "newDeaths",
       },
       {
-        title: "New Recovered",
+        title: "Số ca hồi phục mới",
         dataIndex: "newRecovered",
         key: "newRecovered",
       },
       {
-        title: "Total Confirmed",
+        title: "Tổng ca nhiễm",
         dataIndex: "totalConfirmed",
         key: "totalConfirmed",
       },
       {
-        title: "Total Deaths",
+        title: "Tổng ca tử vong",
         dataIndex: "totalDeaths",
         key: "totalDeaths",
       },
       {
-        title: "Total Recovered",
+        title: "Tổng ca hồi phục",
         dataIndex: "totalRecovered",
         key: "totalRecovered",
       },
       {
-        title: "Date",
+        title: "Thời điểm",
         dataIndex: "date",
         key: "date",
       },
     ];
-    return <Table columns={columns} dataSource={dataSource} />;
+    return (
+      <div className="table-container">
+        <span className="table-discription">Thống kê thế giới</span>
+        <Table
+          scroll={{ y: 464, x: 500 }}
+          columns={columns}
+          dataSource={dataSource}
+        />
+        ;
+      </div>
+    );
   }
 }
 export default Summary;
