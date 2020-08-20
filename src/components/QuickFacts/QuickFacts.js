@@ -12,29 +12,6 @@ class QuickFasts extends React.Component {
       recovered: 0,
       lastUpdated: "",
       isLoaded: false,
-      contentRoutes: [
-        {
-          name: "Graph",
-        },
-        {
-          name: "Countries",
-        },
-        {
-          name: "Death Rate",
-        },
-        {
-          name: "Sympthoms",
-        },
-        {
-          name: "Incubation",
-        },
-        {
-          name: "Transmission",
-        },
-        {
-          name: "News",
-        },
-      ],
     };
   }
   componentDidMount() {
@@ -59,7 +36,12 @@ class QuickFasts extends React.Component {
     );
   }
   mainContent() {
-    const { isLoaded, totalCases, totalDeaths, recovered } = this.state;
+    const {
+      isLoaded,
+      totalCases,
+      totalDeaths,
+      recovered
+    } = this.state;
     if (isLoaded) {
       return (
         <Row>
@@ -74,7 +56,7 @@ class QuickFasts extends React.Component {
                 margin: 10,
               }}
             />
-            <a className="link">view by country</a>
+            <a href='/' className="link">view by country</a>
           </Col>
           <Col md={8}>
             <Statistic
@@ -107,37 +89,29 @@ class QuickFasts extends React.Component {
     }
   }
   render() {
-    const { contentRoutes, lastUpdated } = this.state;
     return (
-      <div>
-        <div className="title">
-          <p>COVID-19 CORONAVIRUS PANDEMIC</p>
-        </div>
-        <div className="last-updated">
-          <p>{lastUpdated}</p>
-        </div>
-        <Tabs
-          centered={true}
-          type="line"
-          tabBarStyle={{
-            backgroundColor: "#699a21",
-            color: "#fff",
-          }}
-        >
-          {contentRoutes.map((route, index) => {
-            return <Tabs.TabPane key={index} tab={route.name} />;
-          })}
-        </Tabs>
-        <div className="title">
-          <p>GLOBAL</p>
-        </div>
+      <Card
+        title='Global'
+        headStyle={{
+          backgroundColor: '#F5F5F5',
+          color: '#77778B',
+          textAlign: 'center',
+          fontSize: 20,
+          fontWeight: 'bolder',
+          marginRight: 100,
+          marginLeft: 100,
+        }} >
         <Card
+          bordered={true}
           className="grid-content"
-          style={{ textAlign: "center", margin: 20 }}
+          style={{
+            textAlign: "center", marginRight: 100,
+            marginLeft: 100,
+          }}
         >
           {this.mainContent()}
         </Card>
-      </div>
+      </Card>
     );
   }
 }
