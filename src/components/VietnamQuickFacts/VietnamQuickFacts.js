@@ -65,7 +65,7 @@ mainContent() {
                         title='Deaths'
                         value={totalDeathsFm}
                         valueStyle={{
-                            color: '#77778B',
+                            color: '#F63A4B',
                             fontSize: 30,
                             fontWeight: 'bold',
                             margin: 10
@@ -98,26 +98,29 @@ render() {
     } = this.state;
     lastUpdated = new Date();
     return (
-        <div>
-            <div className='title'>
-                <p>VIET NAM</p>
-            </div>
-            <Tabs
-                centered={true}
-                type='line'
-                tabBarStyle=
-                {{
-                    backgroundColor: '#699a21',
-                    color: '#fff'
-                }}
-            >
-            </Tabs>
-            <Card
-                className='grid-content'
-                style={{ textAlign: 'center', margin: 20 }}>
-                    {this.mainContent()}
-            </Card>
-        </div>
+        <Card
+      bordered={false}
+        title='Viet Nam'
+        headStyle={{
+          backgroundColor: '#F5F5F5',
+          color: '#77778B',
+          textAlign: 'center',
+          fontSize: 20,
+          fontWeight: 'bolder',
+          marginRight: 100,
+          marginLeft: 100,
+        }} >
+        <Card
+          bordered={true}
+          className="grid-content"
+          style={{
+            textAlign: "center", marginRight: 100,
+            marginLeft: 100,
+          }}
+        >
+          {this.mainContent()}
+        </Card>
+      </Card>
     )
 }
 }

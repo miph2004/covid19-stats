@@ -8,6 +8,7 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <QuickFacts/>
+        <VietnamQuickFacts/>
         <Summary />
         <VietnamStats />
       </React.Fragment>
