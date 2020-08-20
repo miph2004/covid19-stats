@@ -27,6 +27,11 @@ class DashBoard extends React.Component {
             <VietnamProvinceStats />
           </Col>
         </Row>
+        <Row>
+          <Col span={24}>
+            <VietnamStats />
+          </Col>
+        </Row>
       </div>
     );
   }

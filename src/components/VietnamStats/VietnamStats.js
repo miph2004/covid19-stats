@@ -59,33 +59,34 @@ class VietnamStats extends React.Component {
     const dataSource = this._renderVietNamStatsList();
     const columns = [
       {
-        title: "Total",
+        title: "Tổng số ca",
         dataIndex: "total",
         key: "total",
       },
       {
-        title: "Active",
+        title: "Đang điều trị",
         dataIndex: "active",
         key: "active",
       },
       {
-        title: "Recovered",
+        title: "Hồi phục",
         dataIndex: "recovered",
         key: "recovered",
       },
       {
-        title: "Deaths",
+        title: "Tử vong",
         dataIndex: "deaths",
         key: "deaths",
       },
       {
-        title: "Date",
+        title: "Thời điểm",
         dataIndex: "date",
         key: "date",
       },
     ];
     return (
       <div className="table-container">
+        <span className="table-discription">Thống kê Việt Nam</span>
         <Table dataSource={dataSource} columns={columns} />
       </div>
     );
