@@ -36,12 +36,7 @@ class QuickFasts extends React.Component {
     );
   }
   mainContent() {
-    const {
-      isLoaded,
-      totalCases,
-      totalDeaths,
-      recovered
-    } = this.state;
+    const { isLoaded, totalCases, totalDeaths, recovered } = this.state;
     if (isLoaded) {
       return (
         <Row>
@@ -56,7 +51,9 @@ class QuickFasts extends React.Component {
                 margin: 10,
               }}
             />
-            <a href='/' className="link">view by country</a>
+            <a href="/" className="link">
+              view by country
+            </a>
           </Col>
           <Col md={8}>
             <Statistic
@@ -91,22 +88,24 @@ class QuickFasts extends React.Component {
   render() {
     return (
       <Card
-      bordered={false}
-        title='Global'
+        bordered={false}
+        title="Global"
         headStyle={{
-          backgroundColor: '#F5F5F5',
-          color: '#77778B',
-          textAlign: 'center',
+          backgroundColor: "#F5F5F5",
+          color: "#77778B",
+          textAlign: "center",
           fontSize: 20,
-          fontWeight: 'bolder',
+          fontWeight: "bolder",
           marginRight: 100,
           marginLeft: 100,
-        }} >
+        }}
+      >
         <Card
           bordered={true}
           className="grid-content"
           style={{
-            textAlign: "center", marginRight: 100,
+            textAlign: "center",
+            marginRight: 100,
             marginLeft: 100,
           }}
         >
