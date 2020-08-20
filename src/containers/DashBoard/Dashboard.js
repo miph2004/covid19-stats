@@ -19,17 +19,16 @@ class DashBoard extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col md={12}>
+          <Col md={24}>
             <Summary />
-          </Col>
-
-          <Col md={12}>
-            <VietnamProvinceStats />
           </Col>
         </Row>
         <Row>
-          <Col md={24}>
+          <Col md={12}>
             <VietnamStats />
+          </Col>
+          <Col md={12}>
+            <VietnamProvinceStats />
           </Col>
         </Row>
       </div>

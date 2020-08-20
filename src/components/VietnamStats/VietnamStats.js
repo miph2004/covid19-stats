@@ -1,7 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Table, Input, Button, Space } from "antd";
-import { SearchOutlined } from '@ant-design/icons'; 
+import { Table } from "antd";
 import "./VietnamStats.css";
 
 class VietnamStats extends React.Component {
@@ -10,8 +9,8 @@ class VietnamStats extends React.Component {
     this.state = {
       data: [],
       isLoaded: false,
-      searchText: '',
-      searchedColumn: '',
+      searchText: "",
+      searchedColumn: "",
     };
   }
 
@@ -42,7 +41,6 @@ class VietnamStats extends React.Component {
       );
   }
 
-  
   _renderVietNamStatsList = () => {
     const data = this.state.data;
     if (this.state.isLoaded) {
@@ -66,28 +64,28 @@ class VietnamStats extends React.Component {
         title: "Tổng số ca",
         dataIndex: "total",
         key: "total",
-        defaultSortOrder: 'descend',
+        defaultSortOrder: "descend",
         sorter: (a, b) => a.total - b.total,
       },
       {
         title: "Đang điều trị",
         dataIndex: "active",
         key: "active",
-        defaultSortOrder: 'descend',
+        defaultSortOrder: "descend",
         sorter: (a, b) => a.active - b.active,
       },
       {
         title: "Hồi phục",
         dataIndex: "recovered",
         key: "recovered",
-        defaultSortOrder: 'descend',
+        defaultSortOrder: "descend",
         sorter: (a, b) => a.recovered - b.recovered,
       },
       {
         title: "Tử vong",
         dataIndex: "deaths",
         key: "deaths",
-        defaultSortOrder: 'descend',
+        defaultSortOrder: "descend",
         sorter: (a, b) => a.deaths - b.deaths,
       },
       {

@@ -77,31 +77,33 @@ class VietnamQuickFacts extends React.Component {
   }
   render() {
     return (
-      <Card
-        bordered={false}
-        title="Việt Nam"
-        headStyle={{
-          backgroundColor: "#F5F5F5",
-          color: "#77778B",
-          textAlign: "center",
-          fontSize: 20,
-          fontWeight: "bolder",
-          marginRight: 100,
-          marginLeft: 100,
-        }}
-      >
+      <div className="card-container">
         <Card
-          bordered={true}
-          className="grid-content"
-          style={{
+          bordered={false}
+          title="Việt Nam"
+          headStyle={{
+            backgroundColor: "#F5F5F5",
+            color: "#1890ff",
             textAlign: "center",
+            fontSize: 20,
+            fontWeight: "bolder",
             marginRight: 100,
             marginLeft: 100,
           }}
         >
-          {this.mainContent()}
+          <Card
+            bordered={true}
+            className="grid-content"
+            style={{
+              textAlign: "center",
+              marginRight: 100,
+              marginLeft: 100,
+            }}
+          >
+            {this.mainContent()}
+          </Card>
         </Card>
-      </Card>
+      </div>
     );
   }
 }
