@@ -30,8 +30,20 @@ class Summary extends React.Component {
 
   _renderSummaryList = () => {
     const { Countries } = this.state.data;
+
     if (this.state.isLoaded) {
       return Countries.map((item) => {
+        const totalClosedCases = item.TotalDeaths + item.TotalRecovered;
+        let percentageRecovered = 0;
+        let percentageDeaths = 0;
+        let newPercentageRecovered = 0 ;
+        let newPercentageDeaths = 0 ;
+        if (totalClosedCases != 0) {
+          percentageRecovered = parseFloat((item.TotalRecovered / totalClosedCases) * 100).toFixed(2)
+          percentageDeaths = parseFloat((item.TotalDeaths / totalClosedCases) * 100).toFixed(2);
+          newPercentageRecovered = parseFloat((item.NewConfirmed / totalClosedCases) * 100).toFixed(2)
+          newPercentageDeaths = parseFloat((item.NewDeaths / totalClosedCases) * 100).toFixed(2)
+        }
         return {
           country: item.Country,
           newConfirmed: item.NewConfirmed,
@@ -40,6 +52,8 @@ class Summary extends React.Component {
           totalConfirmed: item.TotalConfirmed,
           totalDeaths: item.TotalDeaths,
           totalRecovered: item.TotalRecovered,
+          percentageRecovered: percentageRecovered + '% ' +`(↑${newPercentageRecovered}%)`,
+          percentageDeaths: percentageDeaths + '% ' +`(↑${newPercentageDeaths}%)`,
           date: item.Date,
         };
       });
@@ -169,6 +183,16 @@ class Summary extends React.Component {
         key: "totalRecovered",
         defaultSortOrder: 'descend',
         sorter: (a, b) => a.totalRecovered - b.totalRecovered,
+      },
+      {
+        title: "Tỷ lệ hồi phục",
+        dataIndex: "percentageRecovered",
+        key: "percentageRecovered",
+      },
+      {
+        title: "Tỷ lệ tử vong",
+        dataIndex: "percentageRecovered",
+        key: "percentageRecovered",
       },
       {
         title: "Thời điểm",

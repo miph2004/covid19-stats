@@ -11,24 +11,24 @@ class DashBoard extends React.Component {
     return (
       <div className="container">
         <Row>
-          <Col span={12}>
+          <Col md={12}>
             <QuickFacts />
           </Col>
-          <Col span={12}>
+          <Col md={12}>
             <VietnamQuickFacts />
           </Col>
         </Row>
         <Row>
-          <Col span={12}>
+          <Col md={12}>
             <Summary />
           </Col>
 
-          <Col span={12}>
+          <Col md={12}>
             <VietnamProvinceStats />
           </Col>
         </Row>
         <Row>
-          <Col span={24}>
+          <Col md={24}>
             <VietnamStats />
           </Col>
         </Row>
