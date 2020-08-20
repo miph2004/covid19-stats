@@ -63,7 +63,7 @@ class QuickFasts extends React.Component {
               title="Deaths"
               value={totalDeaths}
               valueStyle={{
-                color: "#77778B",
+                color: "#F63A4B",
                 fontSize: 30,
                 fontWeight: "bold",
                 margin: 10,
@@ -91,6 +91,7 @@ class QuickFasts extends React.Component {
   render() {
     return (
       <Card
+      bordered={false}
         title='Global'
         headStyle={{
           backgroundColor: '#F5F5F5',
