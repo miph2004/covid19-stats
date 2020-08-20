@@ -7,26 +7,15 @@ class QuickFasts extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      totalCases: 0,
-      totalDeaths: 0,
-      recovered: 0,
-      lastUpdated: "",
+      data: [],
       isLoaded: false,
     };
   }
   componentDidMount() {
     axios.get("https://api.covid19api.com/summary").then(
       (response) => {
-        const {
-          TotalConfirmed,
-          TotalDeaths,
-          TotalRecovered,
-        } = response.data.Global;
         this.setState({
-          totalCases: TotalConfirmed,
-          totalDeaths: TotalDeaths,
-          recovered: TotalRecovered,
-          lastUpdated: response.data.Date,
+          data: response.data.Global,
           isLoaded: true,
         });
       },
@@ -36,19 +25,15 @@ class QuickFasts extends React.Component {
     );
   }
   mainContent() {
-    const {
-      isLoaded,
-      totalCases,
-      totalDeaths,
-      recovered
-    } = this.state;
+    const { isLoaded } = this.state;
+    const { TotalConfirmed, TotalDeaths, TotalRecovered } = this.state.data;
     if (isLoaded) {
       return (
         <Row>
           <Col md={8}>
             <Statistic
-              title="Totalvirus Cases"
-              value={totalCases}
+              title="TỔNG CA NHIỄM"
+              value={TotalConfirmed}
               valueStyle={{
                 color: "#77778B",
                 fontSize: 30,
@@ -62,8 +47,8 @@ class QuickFasts extends React.Component {
           </Col>
           <Col md={8}>
             <Statistic
-              title="Deaths"
-              value={totalDeaths}
+              title="TỬ VONG"
+              value={TotalDeaths}
               valueStyle={{
                 color: "#F63A4B",
                 fontSize: 30,
@@ -74,8 +59,8 @@ class QuickFasts extends React.Component {
           </Col>
           <Col md={8}>
             <Statistic
-              title="Total Recovered"
-              value={recovered}
+              title="HỒI PHỤC"
+              value={TotalRecovered}
               valueStyle={{
                 color: "#699a21",
                 fontSize: 30,

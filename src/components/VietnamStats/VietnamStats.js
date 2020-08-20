@@ -84,7 +84,11 @@ class VietnamStats extends React.Component {
         key: "date",
       },
     ];
-    return <Table dataSource={dataSource} columns={columns} />;
+    return (
+      <div className="table-container">
+        <Table dataSource={dataSource} columns={columns} />
+      </div>
+    );
   }
 }
 
