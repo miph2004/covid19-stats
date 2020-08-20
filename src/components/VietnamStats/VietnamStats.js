@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
-import { Table } from "antd";
+import { Table, Input, Button, Space } from "antd";
+import { SearchOutlined } from '@ant-design/icons'; 
 import "./VietnamStats.css";
 
 class VietnamStats extends React.Component {
@@ -9,6 +10,8 @@ class VietnamStats extends React.Component {
     this.state = {
       data: [],
       isLoaded: false,
+      searchText: '',
+      searchedColumn: '',
     };
   }
 
@@ -39,6 +42,7 @@ class VietnamStats extends React.Component {
       );
   }
 
+  
   _renderVietNamStatsList = () => {
     const data = this.state.data;
     if (this.state.isLoaded) {

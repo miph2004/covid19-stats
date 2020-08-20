@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
-import { Table } from "antd";
+import { Table, Input, Button, Space } from "antd";
+import { SearchOutlined } from '@ant-design/icons'; 
+import Highlighter from 'react-highlight-words';
 import "./Summary.css";
 
 class Summary extends React.Component {
@@ -54,6 +56,67 @@ class Summary extends React.Component {
         });
     }
   }
+  getColumnSearchProps = dataIndex => ({
+    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+      <div style={{ padding: 8 }}>
+        <Input
+          ref={node => {
+            this.searchInput = node;
+          }}
+          placeholder={`Search ${dataIndex}`}
+          value={selectedKeys[0]}
+          onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+          onPressEnter={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
+          style={{ width: 188, marginBottom: 8, display: 'block' }}
+        />
+        <Space>
+          <Button
+            type="primary"
+            onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
+            icon={<SearchOutlined />}
+            size="small"
+            style={{ width: 90 }}
+          >
+            Search
+          </Button>
+          <Button onClick={() => this.handleReset(clearFilters)} size="small" style={{ width: 90 }}>
+            Reset
+          </Button>
+        </Space>
+      </div>
+    ),
+    filterIcon: filtered => <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
+    onFilter: (value, record) =>
+      record[dataIndex] ? record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()) : '',
+    onFilterDropdownVisibleChange: visible => {
+      if (visible) {
+        setTimeout(() => this.searchInput.select(), 100);
+      }
+    },
+    render: text =>
+      this.state.searchedColumn === dataIndex ? (
+        <Highlighter
+          highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+          searchWords={[this.state.searchText]}
+          autoEscape
+          textToHighlight={text ? text.toString() : ''}
+        />
+      ) : (
+        text
+      ),
+  });
+  handleSearch = (selectedKeys, confirm, dataIndex) => {
+    confirm();
+    this.setState({
+      searchText: selectedKeys[0],
+      searchedColumn: dataIndex,
+    });
+  };
+
+  handleReset = clearFilters => {
+    clearFilters();
+    this.setState({ searchText: '' });
+  };
   render() {
     const dataSource = this._renderSummaryList();
     const country = this._getArrCountry();
@@ -62,10 +125,8 @@ class Summary extends React.Component {
         title: "Country",
         dataIndex: "country",
         key: "country",
-        filters: country,
-        onFilter: (value, record) => record.country.indexOf(value) === 0,
-        sorter: (a, b) => a.country.length - b.country.length,
-        sortDirections: ['descend'],
+        
+        ...this.getColumnSearchProps('country'),
       },
       {
         title: "New Confirmed",
