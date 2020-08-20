@@ -43,49 +43,77 @@ class Summary extends React.Component {
       });
     }
   };
-
+  _getArrCountry = ()=>{
+    const {Countries} = this.state.data;
+    if(this.state.isLoaded){
+        return Countries.map(item=>{
+            return {
+                text: item.Country,
+                value: item.Country
+            };
+        });
+    }
+  }
   render() {
     const dataSource = this._renderSummaryList();
+    const country = this._getArrCountry();
     const columns = [
       {
         title: "Country",
         dataIndex: "country",
         key: "country",
+        filters: country,
+        onFilter: (value, record) => record.country.indexOf(value) === 0,
+        sorter: (a, b) => a.country.length - b.country.length,
+        sortDirections: ['descend'],
       },
       {
         title: "New Confirmed",
         dataIndex: "newConfirmed",
         key: "newConfirmed",
+        defaultSortOrder: 'descend',
+        sorter: (a, b) => a.newConfirmed - b.newConfirmed,
       },
       {
         title: "New Deaths",
         dataIndex: "newDeaths",
         key: "newDeaths",
+        defaultSortOrder: 'descend',
+        sorter: (a, b) => a.newDeaths - b.newDeaths,
       },
       {
         title: "New Recovered",
         dataIndex: "newRecovered",
         key: "newRecovered",
+        defaultSortOrder: 'descend',
+        sorter: (a, b) => a.newRecovered - b.newRecovered,
       },
       {
         title: "Total Confirmed",
         dataIndex: "totalConfirmed",
         key: "totalConfirmed",
+        defaultSortOrder: 'descend',
+        sorter: (a, b) => a.totalConfirmed - b.totalConfirmed,
       },
       {
         title: "Total Deaths",
         dataIndex: "totalDeaths",
         key: "totalDeaths",
+        defaultSortOrder: 'descend',
+        sorter: (a, b) => a.totalDeaths - b.totalDeaths,
       },
       {
         title: "Total Recovered",
         dataIndex: "totalRecovered",
         key: "totalRecovered",
+        defaultSortOrder: 'descend',
+        sorter: (a, b) => a.totalRecovered - b.totalRecovered,
       },
       {
         title: "Date",
         dataIndex: "date",
         key: "date",
+
       },
     ];
     return <Table columns={columns} dataSource={dataSource} />;
