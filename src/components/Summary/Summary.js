@@ -97,17 +97,7 @@ class Summary extends React.Component {
         key: "totalRecovered",
       },
       {
-        title: "Tỷ lệ phục hồi",
-        dataIndex: "percentageRecovered",
-        key: "percentageRecovered",
-      },
-      {
-        title: "Tỷ lệ tử vong",
-        dataIndex: "percentageDeaths",
-        key: "percentageDeaths",
-      },
-      {
-        title: "Ngày cập nhật mới nhất",
+        title: "Thời điểm",
         dataIndex: "date",
         key: "date",
       },
