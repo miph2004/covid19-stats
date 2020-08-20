@@ -21,13 +21,37 @@ class VietnamProvinceStats extends React.Component {
       .then(
         (res) => {
           this.setState({
-            data: res.data.regionData,
+            data: res.data,
+            isLoaded: true,
           });
         },
         (err) => {
           console.log(err);
         }
       );
+  }
+  _renderSummaryList = () => {
+    const { regionData } = this.state.data;
+    if (this.state.isLoaded) {
+      return regionData.map((item) => {
+        const totalClosedCases = item.recovered + item.deceased;
+        let percentageRecovered = 0;
+        let percentageDeaths = 0;
+        if (totalClosedCases != 0) {
+          percentageRecovered = parseFloat((item.recovered / totalClosedCases) * 100).toFixed(2)
+          percentageDeaths = parseFloat((item.deceased / totalClosedCases) * 100).toFixed(2);
+        }
+        return {
+          region: item.region,
+          totalInfected: item.totalInfected,
+          activeCases: item.activeCases,
+          recovered: item.recovered,
+          deceased: item.deceased,
+          percentageRecovered: percentageRecovered + '% ',
+          percentageDeaths: percentageDeaths + '% ',
+        };
+      });
+    }
   }
 
   render() {
@@ -57,11 +81,22 @@ class VietnamProvinceStats extends React.Component {
         dataIndex: "deceased",
         key: "deceased",
       },
+      {
+        title: "Tỷ lệ hồi phục",
+        dataIndex: "percentageRecovered",
+        key: "percentageRecovered",
+      },
+      {
+        title: "Tỷ lệ tử vong",
+        dataIndex: "percentageDeaths",
+        key: "percentageDeaths",
+      },
     ];
+    const dataSource = this._renderSummaryList();
     return (
       <div className="table-container">
         <span className="table-discription">Thống kê theo tỉnh</span>
-        <Table dataSource={this.state.data} columns={columns} />
+        <Table dataSource={dataSource} columns={columns} />
       </div>
     );
   }
