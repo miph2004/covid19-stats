@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Table, Input, Button, Space } from "antd";
-import { SearchOutlined } from '@ant-design/icons'; 
+import { SearchOutlined } from '@ant-design/icons';
 import "./VietnamStats.css";
 
 class VietnamStats extends React.Component {
@@ -26,8 +26,8 @@ class VietnamStats extends React.Component {
     axios
       .get(
         "https://api.covid19api.com/country/vietnam?from=2020-03-01T00:00:00Z&to=" +
-          date +
-          "T00:00:00Z"
+        date +
+        "T00:00:00Z"
       )
       .then(
         (res) => {
@@ -42,17 +42,26 @@ class VietnamStats extends React.Component {
       );
   }
 
-  
+
   _renderVietNamStatsList = () => {
     const data = this.state.data;
     if (this.state.isLoaded) {
       return data.reverse().map((item) => {
+        const totalClosedCases = item.Recovered + item.Deaths;
+        let percentageRecovered = 0;
+        let percentageDeaths = 0;
+        if (totalClosedCases != 0) {
+          percentageRecovered = parseFloat((item.Recovered / totalClosedCases) * 100).toFixed(2)
+          percentageDeaths = parseFloat((item.Deaths / totalClosedCases) * 100).toFixed(2);
+        }
         return {
           country: item.Country,
           total: item.Confirmed,
           active: item.Active,
           recovered: item.Recovered,
           deaths: item.Deaths,
+          percentageRecovered: percentageRecovered + '% ',
+          percentageDeaths: percentageDeaths + '% ',
           date: item.Date,
         };
       });
@@ -89,6 +98,20 @@ class VietnamStats extends React.Component {
         key: "deaths",
         defaultSortOrder: 'descend',
         sorter: (a, b) => a.deaths - b.deaths,
+      },
+      {
+        title: "Tỷ lệ hồi phục",
+        dataIndex: "percentageRecovered",
+        key: "percentageRecovered",
+        defaultSortOrder: 'descend',
+        sorter: (a, b) => a.percentageRecovered - b.percentageRecovered,
+      },
+      {
+        title: "Tỷ lệ tử vong",
+        dataIndex: "percentageDeaths",
+        key: "percentageDeaths",
+        defaultSortOrder: 'descend',
+        sorter: (a, b) => a.percentageDeaths - b.percentageDeaths,
       },
       {
         title: "Thời điểm",
