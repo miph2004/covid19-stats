@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Statistic, Spin, Tabs, Row, Col, Card } from "antd";
+import { Statistic, Spin, Row, Col, Card } from "antd";
 class VietnamQuickFacts extends React.Component {
   constructor(props) {
     super(props);
@@ -35,7 +35,7 @@ class VietnamQuickFacts extends React.Component {
         <Row>
           <Col md={8}>
             <Statistic
-              title="TỔNG CA NHIỄM"
+              title="TỔNG CA"
               value={total}
               valueStyle={{
                 color: "#77778B",

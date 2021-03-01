@@ -1,1 +1,8 @@
 @import "~antd/dist/antd.css";
+.card-container {
+  border: 3px solid #282a36;
+  margin: 12px 24px;
+  padding: 24px;
+  background-color: #fff;
+  border-radius: 8px;
+}

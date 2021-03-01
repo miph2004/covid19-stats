@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Spin, Tabs, Card, Col, Row, Statistic } from "antd";
+import { Spin, Card, Col, Row, Statistic } from "antd";
 import "./QuickFasts.css";
 
 class QuickFasts extends React.Component {

@@ -1,8 +1,8 @@
 import React from "react";
 import axios from "axios";
 import { Table, Input, Button, Space } from "antd";
-import { SearchOutlined } from '@ant-design/icons'; 
-import Highlighter from 'react-highlight-words';
+import { SearchOutlined } from "@ant-design/icons";
+import Highlighter from "react-highlight-words";
 import "./VietnamProvinceStats.css";
 
 class VietnamProvinceStats extends React.Component {
@@ -30,18 +30,27 @@ class VietnamProvinceStats extends React.Component {
         }
       );
   }
-  getColumnSearchProps = dataIndex => ({
-    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+  getColumnSearchProps = (dataIndex) => ({
+    filterDropdown: ({
+      setSelectedKeys,
+      selectedKeys,
+      confirm,
+      clearFilters,
+    }) => (
       <div style={{ padding: 8 }}>
         <Input
-          ref={node => {
+          ref={(node) => {
             this.searchInput = node;
           }}
           placeholder={`Search ${dataIndex}`}
           value={selectedKeys[0]}
-          onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
-          onPressEnter={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
-          style={{ width: 188, marginBottom: 8, display: 'block' }}
+          onChange={(e) =>
+            setSelectedKeys(e.target.value ? [e.target.value] : [])
+          }
+          onPressEnter={() =>
+            this.handleSearch(selectedKeys, confirm, dataIndex)
+          }
+          style={{ width: 188, marginBottom: 8, display: "block" }}
         />
         <Space>
           <Button
@@ -53,27 +62,38 @@ class VietnamProvinceStats extends React.Component {
           >
             Search
           </Button>
-          <Button onClick={() => this.handleReset(clearFilters)} size="small" style={{ width: 90 }}>
+          <Button
+            onClick={() => this.handleReset(clearFilters)}
+            size="small"
+            style={{ width: 90 }}
+          >
             Reset
           </Button>
         </Space>
       </div>
     ),
-    filterIcon: filtered => <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
+    filterIcon: (filtered) => (
+      <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
+    ),
     onFilter: (value, record) =>
-      record[dataIndex] ? record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()) : '',
-    onFilterDropdownVisibleChange: visible => {
+      record[dataIndex]
+        ? record[dataIndex]
+            .toString()
+            .toLowerCase()
+            .includes(value.toLowerCase())
+        : "",
+    onFilterDropdownVisibleChange: (visible) => {
       if (visible) {
         setTimeout(() => this.searchInput.select(), 100);
       }
     },
-    render: text =>
+    render: (text) =>
       this.state.searchedColumn === dataIndex ? (
         <Highlighter
-          highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+          highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
           searchWords={[this.state.searchText]}
           autoEscape
-          textToHighlight={text ? text.toString() : ''}
+          textToHighlight={text ? text.toString() : ""}
         />
       ) : (
         text
@@ -87,9 +107,9 @@ class VietnamProvinceStats extends React.Component {
     });
   };
 
-  handleReset = clearFilters => {
+  handleReset = (clearFilters) => {
     clearFilters();
-    this.setState({ searchText: '' });
+    this.setState({ searchText: "" });
   };
   render() {
     const columns = [
@@ -97,34 +117,34 @@ class VietnamProvinceStats extends React.Component {
         title: "Tỉnh",
         dataIndex: "region",
         key: "region",
-        ...this.getColumnSearchProps('region'),
+        ...this.getColumnSearchProps("region"),
       },
       {
-        title: "Tổng ca nhiễm",
+        title: "Tổng ca",
         dataIndex: "totalInfected",
         key: "totalInfected",
-        defaultSortOrder: 'descend',
+        defaultSortOrder: "descend",
         sorter: (a, b) => a.totalInfected - b.totalInfected,
       },
       {
         title: "Đang điều trị",
         dataIndex: "activeCases",
         key: "activeCases",
-        defaultSortOrder: 'descend',
+        defaultSortOrder: "descend",
         sorter: (a, b) => a.activeCases - b.activeCases,
       },
       {
         title: "Số ca hồi phục",
         dataIndex: "recovered",
         key: "recovered",
-        defaultSortOrder: 'descend',
+        defaultSortOrder: "descend",
         sorter: (a, b) => a.recovered - b.recovered,
       },
       {
         title: "Số ca tử vong",
         dataIndex: "deceased",
         key: "deceased",
-        defaultSortOrder: 'descend',
+        defaultSortOrder: "descend",
         sorter: (a, b) => a.deceased - b.deceased,
       },
     ];

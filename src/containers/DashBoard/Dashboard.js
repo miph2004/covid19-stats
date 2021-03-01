@@ -11,10 +11,10 @@ class DashBoard extends React.Component {
     return (
       <div className="container">
         <Row>
-          <Col md={12}>
+          <Col md={24}>
             <QuickFacts />
           </Col>
-          <Col md={12}>
+          <Col md={24}>
             <VietnamQuickFacts />
           </Col>
         </Row>
